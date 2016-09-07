@@ -1,0 +1,26 @@
+---
+#- name: Proxy pour apt
+- name: Add ssh publickey
+  authorized_key: user=administrateur key="{{ lookup('file', '/home/administrateur/.ssh/id_rsa.pub') }}"
+
+- name: Installation de aptitude
+  apt: name=aptitude state=present
+  become: true
+
+- name: Outils d'administration
+  apt: name={{item}} state=present
+  with_items:
+    - vim-nox
+    - tmux
+    - zsh
+    - git
+  become: true
+
+- name: sauvegarde du fichier de configuration par defaut
+  copy: src=/etc/zsh/zshrc dest=/etc/zsh/zshrc.back force=no
+  become: true
+
+- name: Téléchargement de la configuration grml 
+  get_url: url=http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc dest=/etc/zsh/zshrc
+  become: true
+

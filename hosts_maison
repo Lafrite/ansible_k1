@@ -1,0 +1,7 @@
+[rasp_desktop]
+192.168.1.55
+192.168.1.51
+
+[rasp_desktop:vars]
+ansible_ssh_user=administrateur
+ansible_sudo_pass=uf218m976

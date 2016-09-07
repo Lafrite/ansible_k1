@@ -1,0 +1,20 @@
+---
+#- name: Préparation du skel
+#
+#- name: wiskermenu pour xfce
+#
+#- name: reglage du panel
+#
+#- name: fond d'écran par defaut
+
+- name: firefox configuration
+  lineinfile: dest=/usr/lib/firefox/defaults/pref/channel-prefs.js line='user_pref("browser.startup.homepage", "{{ firefox_home }}")'
+  become: true
+
+- name: creation du compte prof
+  user: name="{{ prof_username }}" password="{{ prof_password}"
+  become: true
+
+- name: creation du compte eleve
+  user: name="{{ eleve_username }}" password="{{ eleve_password}"
+  become: true

@@ -1,57 +1,10 @@
 ---
-- hosts: rasp
-  become: yes
+- hosts: rasp_desktop
+  become: true
   become_method: 'sudo'
-
-  tasks:
-    - name: Install aptitude in order to user apt module
-      command: apt-get -y install aptitude
-
-    - name: Remove useless packages
-      apt: name={{ item }} state=absent
-      with_items:
-        - thunderbird
-        - xfburn 
-        - orage 
-        - transmission-common
-        - pidgin 
-        - parole
-
-    - name: Update packages
-      apt: update_cache=yes upgrade=yes
-
-    - name: Install common packages
-      apt: name={{ item }} state=present
-      with_items:
-        - scratch
-        - geogebra
-        - vlc
-        - algobox
-        - audacity
-        - sweethome3D
-
-    #- name: Install libreoffice packages
-    #  apt: name={{ item }} state=present
-    #  with_items:
-    #    - libreoffice
-    #    - libreoffice-gtk
-    #    - hyphen-fr
-    #    - mythes-fr
-    #    - libreoffice-l10n-fr
-
-    #- name: Clean skel
-    #  file: path=/etc/skel owner=administrateur 
-
-    #- name: Copy standart home
-    #  copy: src=./files/skel/ dest=/etc/skel #owner=prof group=prof
-    #  #synchronize: src=./files/skel dest=/etc/ delete=yes
-    #  #become: no
-
-    #- name: Create prof account
-    #  user: name=prof shell=/bin/bash groups=video append=yes password=$6$rounds=656000$98yeCzzvVvurH27B$f.Mm7DJTc0rpiud7/qdtxV.4wxr.1MJGYPQl8b6jl3NxHvt7/Kgxzl1oIaItLkbRRdghYhpp1pAN9lGj0SFSh1	
-
-    #- name: Set permission for prof
-    #  file: path=/home/prof owner=prof group=prof 
-    #
-    #- name: automatic connection for prof
-    #  copy: src=./files/lightdm.conf dest=/etc/lightdm/
+  roles:
+    - ini_ansible
+    #- clean_rasp
+    #- default_users
+    #- prepare2teach
+    #- integrdom
