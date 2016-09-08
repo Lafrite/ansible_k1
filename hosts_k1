@@ -1,13 +1,18 @@
 [rasp_kit]
 10.209.134.199
-10.209.134.45
+#10.209.134.45
+10.209.134.35
+10.209.134.181
 
 [rasp_kit:vars]
 ansible_ssh_user=administrateur
 ansible_sudo_pass=uf218m976
 
 [rasp_desktop]
-10.209.134.51
+#10.209.134.69
+#10.209.134.101
+#10.209.134.51
+10.209.134.113
 
 [rasp_desktop:vars]
 ansible_ssh_user=administrateur

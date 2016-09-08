@@ -1,6 +1,0 @@
-[rasp]
-192.168.1.27
-
-[rasp:vars]
-ansible_ssh_user=administrateur
-ansible_sudo_pass=uf218m976

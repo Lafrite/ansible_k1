@@ -4,7 +4,7 @@
   become_method: 'sudo'
   roles:
     - ini_ansible
-    #- clean_rasp
-    #- default_users
+    - clean_rasp
+    - default_users
     #- prepare2teach
     #- integrdom

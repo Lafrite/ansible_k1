@@ -1,20 +1,33 @@
 ---
-#- name: Préparation du skel
-#
+- name: Préparation du skel
+  copy: src=skel/ dest=/etc/skel
+
 #- name: wiskermenu pour xfce
+#  copy: src=panel/whiskermenu-1.rc dest=/etc/xdg/xdg-xubuntu/xfce4/panel/ owner=root group=root mode=751 backup=yes
 #
 #- name: reglage du panel
+#  copy: src=xfconf/xfce-perchannel-xml/xfce4-panel.xml dest=/etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/ owner=root group=root mode=751 backup=yes
 #
-#- name: fond d'écran par defaut
-
-- name: firefox configuration
-  lineinfile: dest=/usr/lib/firefox/defaults/pref/channel-prefs.js line='user_pref("browser.startup.homepage", "{{ firefox_home }}")'
-  become: true
+#- name: Fond d'écran et bureau
+#  copy: src=xfconf/xfce-perchannel-xml/xfce4-desktop.xml dest=/etc/xdg/xdg-xubuntu/xfce4/xfconf/xfce-perchannel-xml/ owner=root group=root mode=751 backup=yes
+#
+#- name: wiskermenu pour xfce bis
+#  copy: src=panel/whiskermenu-1.rc dest=/etc/xdg/xfce4/panel/ owner=root group=root mode=751 backup=yes
+#
+#- name: reglage du panel bis
+#  copy: src=xfconf/xfce-perchannel-xml/xfce4-panel.xml dest=/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/ owner=root group=root mode=751 backup=yes
+#
+#- name: Fond d'écran et bureau bis
+#  copy: src=xfconf/xfce-perchannel-xml/xfce4-desktop.xml dest=/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/ owner=root group=root mode=751 backup=yes
+#
+#- name: firefox configuration
+#  lineinfile: dest=/usr/lib/firefox/defaults/pref/channel-prefs.js line='user_pref(\"browser.startup.homepage\", \"{{ firefox_home }}\")'
+#  become: true
 
 - name: creation du compte prof
-  user: name="{{ prof_username }}" password="{{ prof_password}"
+  user: name="{{ prof_username }}" password="{{ prof_password }}"
   become: true
 
 - name: creation du compte eleve
-  user: name="{{ eleve_username }}" password="{{ eleve_password}"
+  user: name="{{ eleve_username }}" password="{{ eleve_password }}"
   become: true
